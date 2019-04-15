@@ -78,8 +78,8 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
         try:
             multiple_ints_with_conversion("Hello", 2)
         except ValueError:
-            print("Not valid input data")
-        >>> "Not valid input data"
+            raise OurAwesomeException
+        >>>
     """
     try:
         return int(first_value) * int(second_value)
@@ -103,10 +103,7 @@ def is_word_in_text(word: str, text: str) -> bool:
         >>> False
 
     """
-    if text.find(word) != -1:
-        return True
-    else:
-        return False
+    return word in text
 
 
 def some_loop_exercise() -> list:
@@ -156,13 +153,9 @@ def simple_sort(data: List[int]) -> List[list]:
     Returns:
 
     """
-    i = 0
-    while i < len(data) - 1:
-        j = 0
-        while j < len(data) - i - 1:
-            if data[j] > data[j + 1]:
-                data[j], data[j + 1] = data[j + 1], data[j]
-            j += 1
-        i += 1
+    for i in range(len(data)):
+        for j in range(i + 1, len(data)):
+            if data[i] > data[j]:
+                data[i], data[j] = data[j], data[i]
     return data
 
